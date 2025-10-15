@@ -1,6 +1,6 @@
 <?php
 
-namespace Array;
+namespace FilipNeklan\Utils\Array;
 
 class ArrayUtils
 {
