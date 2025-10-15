@@ -1,5 +1,6 @@
 <?php
 
+namespace Array;
 
 class ArrayUtils
 {
