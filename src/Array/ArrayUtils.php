@@ -59,4 +59,41 @@ class ArrayUtils
         return $array[array_key_last($array)] ?? null;
     }
 
+    /**
+     * Returns if the value is in an array.
+     *
+     * Example:
+     * ```php
+     * ArrayUtils::contains(2, [1, 2, 3]); // true
+     * ```
+     */
+    public static function contains(mixed $val, ?array $array, bool $strict = false): bool
+    {
+        if (self::isEmpty($array)) return false;
+        return in_array($val, $array, $strict);
+    }
+
+    /**
+     * Returns true if $haystack contains all UNIQUE values from $needles.
+     *
+     * Example:
+     * ```php
+     * ArrayUtils::containsAll([1, 2, 3], [3, 1]);        // true
+     * ArrayUtils::containsAll([1, 2, 3], [3, 3, 1]);     // true (duplicitní 3 se nevyžaduje)
+     * ArrayUtils::containsAll([1, 2, 3], [4]);           // false
+     * ```
+     */
+    public static function containsAll(?array $array, ?array $needles, bool $strict = false): bool
+    {
+        if (self::isEmpty($needles)) return true;
+        if (self::isEmpty($array)) return false;
+
+        foreach (array_unique($needles, SORT_REGULAR) as $needle) {
+            if (!in_array($needle, $array, $strict)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
