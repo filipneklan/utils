@@ -73,4 +73,35 @@ class StringUtils
         return strtolower($a) === strtolower($b);
     }
 
+    /**
+     * Trims whitespace from the beginning and end of the string.
+     * Returns `null` if the input is `null` or blank (empty or whitespace only).
+     *
+     * Example:
+     * ```php
+     * StringUtils::trimToNull("  test  "); // "test"
+     * StringUtils::trimToNull("   ");      // null
+     * StringUtils::trimToNull(null);       // null
+     * ```
+     */
+    public static function trimToNull(?string $str): ?string
+    {
+        return self::isBlank($str) ? null : trim($str);
+    }
+
+    /**
+     * Trims whitespace from the beginning and end of the string.
+     * Returns an empty string (`""`) if the input is `null`.
+     *
+     * Example:
+     * ```php
+     * StringUtils::trimToEmpty("  test  "); // "test"
+     * StringUtils::trimToEmpty(null);       // ""
+     * ```
+     */
+    public static function trimToEmpty(?string $str): string
+    {
+        return $str === null ? '' : trim($str);
+    }
+
 }
