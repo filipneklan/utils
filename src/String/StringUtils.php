@@ -17,7 +17,8 @@ class StringUtils
      */
     public static function isBlank(?string $string): bool
     {
-        return $string === null || trim($string) === '';
+        if ($string === null) return true;
+        return trim($string) === '';
     }
 
     /**
